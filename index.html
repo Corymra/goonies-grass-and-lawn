@@ -45,7 +45,7 @@
       font-size: 18px;
       line-height: 1.6;
       overflow-x: hidden;
-      cursor: default;
+      cursor: url('cursor.png') 40 40, auto;
     }
 
     /* Grain overlay */
@@ -206,27 +206,18 @@
       );
     }
 
-    /* Watermark — cropped logo showing only skull+sabers */
+    /* Watermark — clean Jolly Roger, no text */
     .hero-watermark {
       position: absolute;
-      top: 50%;
+      top: 45%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: min(680px, 92vw);
-      height: min(680px, 92vw);
-      overflow: hidden;
+      width: min(780px, 98vw);
+      opacity: 0.08;
       z-index: 1;
       pointer-events: none;
-      opacity: 0.08;
+      filter: invert(1);
       animation: slowPulse 8s ease-in-out infinite;
-    }
-    .hero-watermark img {
-      width: 145%;
-      position: absolute;
-      top: -8%;
-      left: -22%;
-      filter: grayscale(1) contrast(1.4);
-      mix-blend-mode: screen;
     }
 
     @keyframes slowPulse {
@@ -922,19 +913,10 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: min(560px, 88vw);
-      height: min(560px, 88vw);
-      overflow: hidden;
-      opacity: 0.05;
+      width: min(620px, 92vw);
+      opacity: 0.06;
+      filter: invert(1);
       pointer-events: none;
-    }
-    .contact-watermark img {
-      width: 145%;
-      position: absolute;
-      top: -8%;
-      left: -22%;
-      filter: grayscale(1) contrast(1.4);
-      mix-blend-mode: screen;
     }
 
     .contact-inner {
@@ -1128,10 +1110,8 @@
   <section class="hero" id="home">
     <div class="hero-bg"></div>
 
-    <!-- Watermark: logo.png cropped to show only skull+sabers, text clipped out -->
-    <div class="hero-watermark" aria-hidden="true">
-      <img src="logo.png" alt="" />
-    </div>
+    <!-- Jolly Roger watermark — skull and crossed sabers only -->
+    <img class="hero-watermark" src="watermark.png" alt="" aria-hidden="true" />
 
     <div class="hero-content">
       <p class="hero-est">☠ &nbsp; Est. 2025 &nbsp; ☠</p>
@@ -1422,35 +1402,28 @@
        CONTACT
   ============================================================ -->
   <section class="contact" id="contact">
-    <svg class="contact-watermark" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M 40 440 C 60 400 100 350 150 290 C 180 255 200 235 220 220 L 228 228 C 210 245 190 267 162 303 C 114 363 76 415 58 452 Z" fill="#c8a96e"/>
-      <path d="M 40 440 C 30 430 25 415 35 405 C 50 390 65 410 58 452 Z" fill="#c8a96e"/>
-      <path d="M 218 218 C 212 208 205 200 210 190 C 220 175 240 185 235 200 C 245 192 258 198 252 212 C 248 222 235 222 228 228 Z" fill="#c8a96e"/>
-      <path d="M 235 200 C 255 180 275 162 285 155 C 292 150 300 152 298 160 C 290 170 268 188 248 210 Z" fill="#c8a96e"/>
-      <path d="M 460 440 C 440 400 400 350 350 290 C 320 255 300 235 280 220 L 272 228 C 290 245 310 267 338 303 C 386 363 424 415 442 452 Z" fill="#c8a96e"/>
-      <path d="M 460 440 C 470 430 475 415 465 405 C 450 390 435 410 442 452 Z" fill="#c8a96e"/>
-      <path d="M 282 218 C 288 208 295 200 290 190 C 280 175 260 185 265 200 C 255 192 242 198 248 212 C 252 222 265 222 272 228 Z" fill="#c8a96e"/>
-      <path d="M 265 200 C 245 180 225 162 215 155 C 208 150 200 152 202 160 C 210 170 232 188 252 210 Z" fill="#c8a96e"/>
-      <ellipse cx="250" cy="175" rx="105" ry="110" fill="#c8a96e"/>
-      <path d="M 155 205 Q 145 240 155 265 Q 175 295 250 300 Q 325 295 345 265 Q 355 240 345 205 Z" fill="#c8a96e"/>
-      <ellipse cx="210" cy="168" rx="32" ry="34" fill="#0f0f0c"/>
-      <ellipse cx="290" cy="168" rx="32" ry="34" fill="#0f0f0c"/>
-      <path d="M 238 210 Q 250 230 262 210 Q 258 196 250 192 Q 242 196 238 210 Z" fill="#0f0f0c"/>
-      <rect x="195" y="262" width="18" height="22" rx="3" fill="#0f0f0c"/>
-      <rect x="221" y="262" width="18" height="22" rx="3" fill="#0f0f0c"/>
-      <rect x="247" y="262" width="18" height="22" rx="3" fill="#0f0f0c"/>
-      <rect x="273" y="262" width="18" height="22" rx="3" fill="#0f0f0c"/>
-      <path d="M 158 255 Q 250 310 342 255" stroke="#0f0f0c" stroke-width="8" fill="none" stroke-linecap="round"/>
-    </svg>
+    <img class="contact-watermark" src="watermark.png" alt="" aria-hidden="true" />
     <div class="contact-inner">
       <p class="section-label reveal">Get on the Schedule</p>
       <h2 class="contact-title reveal">Let's Talk</h2>
       <div class="section-rule reveal" style="justify-content:center;">
         <div class="rule-line" style="background:linear-gradient(to left,var(--gold),transparent);"></div>
         <span class="rule-skull">☠</span>
-    <div class="contact-watermark" aria-hidden="true"><img src="logo.png" alt="" /></div>
-  ============================================================ -->
-  <footer>
+        <div class="rule-line"></div>
+      </div>
+      <p class="contact-desc reveal">Fastest way to get on the schedule 👇</p>
+      <div class="contact-phone reveal">
+        <a href="tel:+13026030462">302-603-0462</a>
+      </div>
+      <div class="contact-buttons reveal">
+        <a href="tel:+13026030462" class="btn btn-call">📞 &nbsp; Call or Text</a>
+        <a href="https://www.facebook.com/GooniesGrass" target="_blank" rel="noopener" class="btn btn-facebook">💬 &nbsp; Message on Facebook</a>
+      </div>
+      <div class="contact-service-area reveal">
+        <p>Serving Central &amp; Southern Delaware &nbsp; ☠ &nbsp; Design &amp; Installation of Organic Landscaping &nbsp; ☠ &nbsp; Lawn Maintenance &nbsp; ☠ &nbsp; Hardscaping</p>
+      </div>
+    </div>
+  </section>
     <img class="footer-skull" src="logo.png" alt="Goonies Grass logo" />
     <p class="footer-brand">Goonies Grass + Landscape Design</p>
     <p class="footer-copy">&copy; 2026 Goonies Grass + Landscape Design. All rights reserved.</p>
