@@ -1603,6 +1603,63 @@
     // ============================================================
     // document.getElementById('ownerPhoto').src = 'images/owner.png';
 
+    // ============================================================
+    // GRASS CLIPPING TRAIL
+    // Spawns little grass clipping emojis that fall and fade
+    // behind the cursor as it moves around the page
+    // ============================================================
+    const CLIPPINGS = ['🌿', '🍃', '🌱', '🍀', '🌾'];
+    let lastX = 0, lastY = 0, lastSpawn = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      const now = Date.now();
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+
+      // Only spawn if cursor moved enough and enough time passed
+      if (dist < 12 || now - lastSpawn < 60) return;
+      lastSpawn = now;
+      lastX = e.clientX;
+      lastY = e.clientY;
+
+      const clip = document.createElement('span');
+      clip.textContent = CLIPPINGS[Math.floor(Math.random() * CLIPPINGS.length)];
+
+      // Random scatter behind the cursor
+      const offsetX = (Math.random() - 0.5) * 18;
+      const offsetY = (Math.random() - 0.5) * 18;
+
+      Object.assign(clip.style, {
+        position:      'fixed',
+        left:          (e.clientX + offsetX - 20) + 'px',
+        top:           (e.clientY + offsetY - 20) + 'px',
+        fontSize:      (10 + Math.random() * 10) + 'px',
+        pointerEvents: 'none',
+        zIndex:        '99998',
+        userSelect:    'none',
+        opacity:       '1',
+        transition:    'transform 0.8s ease-out, opacity 0.8s ease-out',
+        transform:     'translateY(0px) rotate(0deg)',
+        willChange:    'transform, opacity',
+      });
+
+      document.body.appendChild(clip);
+
+      // Trigger fall animation on next frame
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const fallY  = 20 + Math.random() * 30;
+          const spin   = (Math.random() - 0.5) * 120;
+          clip.style.transform = `translateY(${fallY}px) rotate(${spin}deg)`;
+          clip.style.opacity   = '0';
+        });
+      });
+
+      // Remove from DOM after animation
+      setTimeout(() => clip.remove(), 900);
+    });
+
   </script>
 
 </body>
